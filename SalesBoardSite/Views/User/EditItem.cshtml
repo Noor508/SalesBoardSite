@@ -4,34 +4,95 @@
     ViewData["Title"] = "Edit Item";
 }
 
-<h2>@ViewData["Title"]</h2>
+<style>
+    /* General cyan theme and background */
+    body {
+        background-color: #e0f7fa; /* Light cyan background */
+        font-family: 'Arial', sans-serif;
+    }
+
+    /* Container styling */
+    .container {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        max-width: 900px;
+        margin: 20px auto;
+    }
+
+    /* Headings styling */
+    h2 {
+        color: #004d40; /* Dark cyan heading */
+        margin-bottom: 20px;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    /* Form styling */
+    .form-control {
+        border: 1px solid #b2dfdb; /* Light cyan border */
+        border-radius: 8px;
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    .form-control:focus {
+        border-color: #00796b; /* Cyan focus color */
+        box-shadow: 0 0 5px rgba(0, 121, 107, 0.5);
+    }
+
+    /* Button styling */
+    .btn-info {
+        background-color: #00acc1; /* Cyan blue background */
+        color: white;
+        border: none;
+        margin: 5px;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-info:hover {
+        background-color: #00838f; /* Darker cyan on hover */
+    }
+
+    /* Center align for buttons */
+    .text-center {
+        text-align: center;
+    }
+
+</style>
+
+<h2 class="text-center mb-4">Edit Item</h2>
 
 <div class="container">
-    <h2 class="text-center mb-4">Edit Item</h2>
-    
     <!-- Edit Item Form -->
-    <div class="">
+    <div class="row justify-content-center">
         <div class="col-md-6">
-            <form asp-action="EditItem" method="post" class="border p-4 shadow rounded" style="background-color: #f8f9fa;">
+            <form asp-action="EditItem" method="post" class="border p-4 shadow rounded" style="background-color: #ffffff;">
                 <input type="hidden" id="ItemId" name="ItemId" value="@Model.ItemId">
                 <input type="hidden" id="SellerId" name="SellerId" value="@Model.SellerId">
-                
+
                 <div class="form-group mb-3">
-                    <label for="Name">Item Name:</label>
-                    <input type="text" id="Name" name="Name" class="form-control form-control-sm" value="@Model.Name" required>
+                    <label for="Name" class="font-weight-bold" style="color: #00796b;">Item Name:</label>
+                    <input type="text" id="Name" name="Name" class="form-control" value="@Model.Name" required>
                 </div>
-                
+
                 <div class="form-group mb-3">
-                    <label for="Price">Price:</label>
-                    <input type="number" id="Price" name="Price" class="form-control form-control-sm" value="@Model.Price" required>
+                    <label for="Price" class="font-weight-bold" style="color: #00796b;">Price:</label>
+                    <input type="number" id="Price" name="Price" class="form-control" value="@Model.Price" required>
                 </div>
-                
+
                 <div class="form-group mb-3">
-                    <label for="AvailableStock">Available Stock:</label>
-                    <input type="number" id="AvailableStock" name="AvailableStock" class="form-control form-control-sm" value="@Model.AvailableStock" required>
+                    <label for="AvailableStock" class="font-weight-bold" style="color: #00796b;">Available Stock:</label>
+                    <input type="number" id="AvailableStock" name="AvailableStock" class="form-control" value="@Model.AvailableStock" required>
                 </div>
-                
-                <button type="submit" class="btn btn-primary btn-sm">Save Changes</button>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-info">Save Changes</button>
+                </div>
             </form>
         </div>
     </div>

@@ -16,7 +16,7 @@ namespace SalesBoardSite.Controllers
 {
     public class UserController : Controller
     {
-        public SqlConnection cn = new SqlConnection("Data Source=PKLAHDJJD8YW2\\SQLEXPRESS;Database=BoardStoreApp;Trusted_Connection=True");
+        public SqlConnection cn = new SqlConnection("Data Source=DESKTOP-MHUVI83\\SQLEXPRESS;Database=BoardStoreApp;Trusted_Connection=True");
         public SqlCommand cmd;
         public SqlDataReader dr;
         public static int activeUser = 0;
@@ -627,7 +627,7 @@ namespace SalesBoardSite.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (SqlConnection connection = new SqlConnection("Data Source=PKLAHDJJD8YW2\\SQLEXPRESS;Initial Catalog=BoardStoreApp;Integrated Security=True"))
+                using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-MHUVI83\\SQLEXPRESS;Initial Catalog=BoardStoreApp;Integrated Security=True"))
                 {
                     connection.Open();
 

@@ -5,11 +5,16 @@
     ViewData["Title"] = "User Home";
 }
 
+<!-- Google Fonts Link for 'Dancing Script' -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
     /* General cyan theme and background */
     body {
         background-color: #e0f7fa; /* Light cyan background */
-        font-family: 'Arial', sans-serif;
+        font-family: 'Roboto', sans-serif; /* Default font for general text */
     }
 
     .container {
@@ -17,6 +22,15 @@
         padding: 30px;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Font for SalesBoardSite using 'Dancing Script' */
+    .site-title {
+        font-family: 'Dancing Script', cursive; /* Applying Dancing Script font */
+        font-size: 2.5rem;
+        color: #004d40;
+        text-align: center;
+        margin-bottom: 20px;
     }
 
     /* Navigation buttons */
@@ -74,6 +88,9 @@
 </style>
 
 <div class="container">
+    <!-- Site Title using Dancing Script Font -->
+    <div class="site-title">SalesBoardSite</div>
+
     <!-- Navigation Buttons -->
     <div class="text-center mb-4">
         <a asp-action="ShoppingItems" asp-controller="User" asp-route-searchTerm="" asp-route-userId="0" class="btn btn-info btn-sm mx-2">Shopping Items</a>
@@ -95,17 +112,17 @@
         <tbody>
             @foreach (var item in Model.ItemsForSale)
             {
-                <tr>
-                    <td>@item.Name</td>
-                    <td>@item.Price</td>
-                    <td>@item.AvailableStock</td>
-                    <td>
-                        <a asp-action="EditItem" asp-route-userId="@item.SellerId" asp-route-ItemID="@item.ItemId" asp-route-name="@item.Name" asp-route-price="@item.Price" asp-route-stock="@item.AvailableStock" class="btn btn-info btn-sm">Edit</a>
-                        <form asp-action="DeleteItem" asp-route-userId="@item.SellerId" asp-route-itemId="@item.ItemId" method="post" class="d-inline">
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                        </form>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Price</td>
+                        <td>@item.AvailableStock</td>
+                        <td>
+                            <a asp-action="EditItem" asp-route-userId="@item.SellerId" asp-route-ItemID="@item.ItemId" asp-route-name="@item.Name" asp-route-price="@item.Price" asp-route-stock="@item.AvailableStock" class="btn btn-info btn-sm">Edit</a>
+                            <form asp-action="DeleteItem" asp-route-userId="@item.SellerId" asp-route-itemId="@item.ItemId" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
             }
         </tbody>
     </table>
@@ -127,10 +144,10 @@
         <tbody>
             @foreach (var customer in Model.Customers)
             {
-                <tr>
-                    <td>@customer.CustomerName</td>
-                    <td>@customer.TotalSpending</td>
-                </tr>
+                    <tr>
+                        <td>@customer.CustomerName</td>
+                        <td>@customer.TotalSpending</td>
+                    </tr>
             }
         </tbody>
     </table>

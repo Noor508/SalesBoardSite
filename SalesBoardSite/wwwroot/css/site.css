@@ -16,7 +16,8 @@ html {
   position: relative;
   min-height: 100%;
 }
-
 body {
-  margin-bottom: 60px;
+    font-family: 'Dancing Script', cursive; /* Apply Dancing Script globally */
+    background-color: #e0f7fa; /* Optional: Cyan background */
+    font-size: 16px; /* Adjust base font size if needed */
 }
