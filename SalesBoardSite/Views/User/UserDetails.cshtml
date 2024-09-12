@@ -1,0 +1,96 @@
+﻿@model SalesBoardSite.Models.User
+
+@{
+    ViewData["Title"] = "User Details";
+}
+
+<style>
+    /* General cyan theme and background */
+    body {
+        background-color: #e0f7fa; /* Light cyan background */
+        font-family: 'Arial', sans-serif;
+    }
+
+    /* Container styling */
+    .container {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        max-width: 900px;
+        margin: 20px auto;
+    }
+
+    /* Headings styling */
+    h2 {
+        color: #004d40;
+        margin-bottom: 20px;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    /* Navigation buttons styling */
+    .btn-info {
+        background-color: #00bcd4;
+        color: white;
+        border: none;
+        margin: 5px;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-info:hover {
+            background-color: #00838f;
+        }
+
+    /* User info styling */
+    .user-info {
+        background-color: #ffffff;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        border: 1px solid #b2dfdb;
+    }
+
+        .user-info p {
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .user-info strong {
+            color: #004d40;
+            font-weight: bold;
+        }
+
+    /* Center align for buttons */
+    .text-center {
+        text-align: center;
+    }
+</style>
+
+<h2 class="text-center mb-4">User Details</h2>
+
+<div class="container">
+    <!-- Navigation Buttons -->
+    <div class="text-center mb-4">
+        <a asp-action="ShoppingItems" asp-controller="User" class="btn btn-info btn-sm">Shopping Items</a>
+        <a asp-action="UserHome" asp-controller="User" class="btn btn-info btn-sm">Sell Items</a>
+        <a asp-action="Login" asp-controller="User" class="btn btn-info btn-sm">Logout</a>
+    </div>
+
+    <!-- User Details Section -->
+    <div class="user-info">
+        <p><strong>Name:</strong> @(Model.Name)</p>
+        <p><strong>Age:</strong> @(Model.Age)</p>
+        <p><strong>Contacts:</strong> @(Model.Contacts)</p>
+        <p><strong>Address:</strong> @(Model.Address)</p>
+    </div>
+
+    <!-- Edit User Details Button -->
+    <div class="text-center">
+        <a asp-action="SaveUserDetails" asp-controller="User" class="btn btn-info btn-sm">Edit User Details</a>
+    </div>
+</div>

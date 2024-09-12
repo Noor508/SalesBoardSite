@@ -1,0 +1,42 @@
+﻿@model SalesBoardSite.Models.User
+
+@{
+    ViewData["Title"] = "Add User Details";
+}
+<div class="container">
+    <!-- Navigation Buttons -->
+    <div class="">
+        <a asp-action="UserDetails" asp-controller="User" class="btn btn-info btn-sm mx-2">User Details</a>
+        <a asp-action="UserHome" asp-controller="User" class="btn btn-info btn-sm mx-2">Sell Items</a>
+        <a asp-action="ShoppingItems" asp-controller="User" class="btn btn-info btn-sm mx-2">Shopping Items</a>
+        <a asp-action="Login" asp-controller="User" class="btn btn-info btn-sm mx-2">Logout</a>
+    </div>
+
+    <h2 class="text-center mb-4">Add User Details</h2>
+
+    <!-- User Details Form -->
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-controller="User" asp-action="SaveUserDetails" method="post" class="border p-4 shadow rounded" style="background-color: #f8f9fa;">
+                <div class="form-group mb-3">
+                    <label for="Name">Name:</label>
+                    <input type="text" id="Name" name="Name" class="form-control form-control-lg" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="Age">Age:</label>
+                    <input type="number" id="Age" name="Age" class="form-control form-control-lg" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="Contacts">Contacts:</label>
+                    <input type="text" id="Contacts" name="Contacts" class="form-control form-control-lg" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="Address">Address:</label>
+                    <input type="text" id="Address" name="Address" class="form-control form-control-lg" required>
+                </div>
+                
+                <button type="submit" class="btn btn-info btn-sm">Save Details</button>
+            </form>
+        </div>
+    </div>
+</div>

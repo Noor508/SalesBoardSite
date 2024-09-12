@@ -1,0 +1,137 @@
+﻿@using Microsoft.AspNetCore.SignalR
+@model SalesBoardSite.Models.User
+
+@{
+    ViewData["Title"] = "User Home";
+}
+
+<style>
+    /* General cyan theme and background */
+    body {
+        background-color: #e0f7fa; /* Light cyan background */
+        font-family: 'Arial', sans-serif;
+    }
+
+    .container {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Navigation buttons */
+    .btn-info {
+        background-color: #00bcd4;
+        color: white;
+        border: none;
+        margin: 5px;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .btn-info:hover {
+        background-color: #00838f;
+    }
+
+    /* Add item button */
+    .btn-primary {
+        background-color: #00bcd4;
+        color: white;
+        border: none;
+        margin: 5px;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .btn-primary:hover {
+        background-color: #00838f;
+    }
+
+    /* Tables */
+    .table {
+        background-color: #ffffff;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #e0f7fa; /* Light cyan for alternating rows */
+    }
+
+    .table th, .table td {
+        padding: 15px;
+        text-align: center;
+    }
+
+    /* Section headers */
+    h3 {
+        color: #004d40;
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="container">
+    <!-- Navigation Buttons -->
+    <div class="text-center mb-4">
+        <a asp-action="ShoppingItems" asp-controller="User" asp-route-searchTerm="" asp-route-userId="0" class="btn btn-info btn-sm mx-2">Shopping Items</a>
+        <a asp-action="UserDetails" asp-controller="User" class="btn btn-info btn-sm mx-2">User Details</a>
+        <a asp-action="Login" asp-controller="User" class="btn btn-info btn-sm mx-2">Logout</a>
+    </div>
+
+    <!-- Items for Sale -->
+    <h3 class="">Items for Sale</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Available Stock</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ItemsForSale)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                    <td>@item.AvailableStock</td>
+                    <td>
+                        <a asp-action="EditItem" asp-route-userId="@item.SellerId" asp-route-ItemID="@item.ItemId" asp-route-name="@item.Name" asp-route-price="@item.Price" asp-route-stock="@item.AvailableStock" class="btn btn-info btn-sm">Edit</a>
+                        <form asp-action="DeleteItem" asp-route-userId="@item.SellerId" asp-route-itemId="@item.ItemId" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Add Item Button -->
+    <div class="text-center mt-4">
+        <a asp-action="AddItem" asp-controller="User" asp-route-Userid="0" class="btn btn-primary btn-sm">Add Item</a>
+    </div>
+
+    <!-- Customers and Total Spending -->
+    <h3 class="">Customers and Total Spending</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Total Spending</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model.Customers)
+            {
+                <tr>
+                    <td>@customer.CustomerName</td>
+                    <td>@customer.TotalSpending</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

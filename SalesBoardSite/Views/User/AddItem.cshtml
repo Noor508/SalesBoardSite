@@ -1,0 +1,104 @@
+﻿@model SalesBoardSite.Models.Item
+
+@{
+    ViewData["Title"] = "Add Item";
+}
+
+<style>
+    /* General cyan theme and background */
+    body {
+        background-color: #e0f7fa; /* Light cyan background */
+        font-family: 'Arial', sans-serif;
+    }
+
+    /* Container styling */
+    .container {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Form styling */
+    .form-group label {
+        color: #004d40;
+        font-weight: bold;
+    }
+
+    .form-control {
+        border-radius: 5px;
+        border: 1px solid #00bcd4;
+        box-shadow: none;
+    }
+
+        .form-control:focus {
+            border-color: #00838f;
+            box-shadow: 0 0 5px rgba(0, 188, 212, 0.5);
+        }
+
+    .btn-primary {
+        background-color: #00bcd4;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+        .btn-primary:hover {
+            background-color: #00838f;
+        }
+
+    .input-group-append .btn {
+        background-color: #00bcd4;
+        color: white;
+        border: none;
+        border-radius: 5px;
+    }
+
+        .input-group-append .btn:hover {
+            background-color: #00838f;
+        }
+</style>
+
+<h2 class="text-center mb-4">@ViewData["Title"]</h2>
+
+<!-- Search Form -->
+<div class="container d-flex justify-content-center mb-4">
+    <div class="col-md-6">
+        <form asp-action="ShoppingItems" method="get" class="border p-4 shadow rounded" style="background-color: #ffffff;">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control form-control-sm" name="searchTerm" placeholder="Search items" aria-label="Search items">
+                <div class="input-group-append">
+                    <button class="btn btn-primary btn-sm" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Add Item Form -->
+<div class="container d-flex justify-content-center">
+    <div class="col-md-6">
+        <form asp-action="AddItem" method="post" class="border p-4 shadow rounded" style="background-color: #ffffff;">
+            <input type="hidden" id="SellerId" name="SellerId" value="@Model.SellerId">
+
+            <div class="form-group mb-3">
+                <label for="Name">Item Name:</label>
+                <input type="text" id="Name" name="Name" class="form-control form-control-sm" placeholder="Enter item name" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="Price">Price:</label>
+                <input type="number" id="Price" name="Price" class="form-control form-control-sm" placeholder="Enter price" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="AvailableStock">Available Stock:</label>
+                <input type="number" id="AvailableStock" name="AvailableStock" class="form-control form-control-sm" placeholder="Enter available stock" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-sm">Add Item</button>
+        </form>
+    </div>
+</div>

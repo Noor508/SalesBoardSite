@@ -1,0 +1,117 @@
+﻿@model SalesBoardSite.Models.Item
+
+@{
+    ViewData["Title"] = "View Item";
+}
+
+<style>
+    /* General cyan theme and background */
+    body {
+        background-color: #e0f7fa; /* Light cyan background */
+        font-family: 'Arial', sans-serif;
+    }
+
+    /* Container styling */
+    .container {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+        margin: auto;
+    }
+
+    /* Headings styling */
+    h2 {
+        color: #004d40;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    /* Paragraph styling */
+    p {
+        color: #00796b;
+        font-size: 18px;
+    }
+
+    /* Navigation buttons styling */
+    .btn-info {
+        background-color: #00bcd4;
+        color: white;
+        border: none;
+        margin: 5px;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+        .btn-info:hover {
+            background-color: #00838f;
+        }
+
+    /* Form styling */
+    .form-group label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        border-radius: 5px;
+        border: 1px solid #00bcd4;
+    }
+
+        .form-control:focus {
+            border-color: #00838f;
+            box-shadow: none;
+        }
+
+    /* Button styling */
+    .btn-primary {
+        background-color: #00bcd4;
+        border: none;
+        color: white;
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+        .btn-primary:hover {
+            background-color: #00838f;
+        }
+
+    /* Out of stock text */
+    .text-danger {
+        color: #d32f2f;
+        font-weight: bold;
+    }
+</style>
+
+<div class="container">
+    <!-- Navigation Buttons -->
+    <div class="text-center mb-4">
+        <a asp-action="ViewCart" asp-controller="User" class="btn btn-info btn-sm mx-2">View Cart</a>
+        <a asp-action="ShoppingItems" asp-controller="User" class="btn btn-info btn-sm mx-2">Shopping Items</a>
+        <a asp-action="UserDetails" asp-controller="User" class="btn btn-info btn-sm mx-2">User Details</a>
+        <a asp-action="UserHome" asp-controller="User" class="btn btn-info btn-sm mx-2">Sell Items</a>
+        <a asp-action="Login" asp-controller="User" class="btn btn-info btn-sm mx-2">Logout</a>
+    </div>
+
+    <!-- Item Details -->
+    <h2>@Model.Name</h2>
+    <p><strong>Price:</strong> $@Model.Price</p>
+    <p><strong>Available Stock:</strong> @Model.AvailableStock</p>
+
+    <!-- Add to Cart Form -->
+    @if (Model.AvailableStock > 0)
+    {
+        <form asp-action="AddToCart" method="post" class="border p-4 rounded shadow-sm mb-4" style="max-width: 300px; background-color: #e0f7fa;">
+            <input type="hidden" id="ItemId" name="ItemId" value="@Model.ItemId" />
+            <div class="form-group">
+                <label for="Quantity">Quantity:</label>
+                <input type="number" id="Quantity" name="Quantity" class="form-control" style="width: 150px;" value="1" min="1" max="@Model.AvailableStock" />
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm mt-3">Add to Cart</button>
+        </form>
+    }
+    else
+    {
+        <p class="text-danger">This item is currently out of stock.</p>
+    }
+</div>

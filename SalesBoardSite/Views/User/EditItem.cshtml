@@ -1,0 +1,38 @@
+﻿@model SalesBoardSite.Models.Item
+
+@{
+    ViewData["Title"] = "Edit Item";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="container">
+    <h2 class="text-center mb-4">Edit Item</h2>
+    
+    <!-- Edit Item Form -->
+    <div class="">
+        <div class="col-md-6">
+            <form asp-action="EditItem" method="post" class="border p-4 shadow rounded" style="background-color: #f8f9fa;">
+                <input type="hidden" id="ItemId" name="ItemId" value="@Model.ItemId">
+                <input type="hidden" id="SellerId" name="SellerId" value="@Model.SellerId">
+                
+                <div class="form-group mb-3">
+                    <label for="Name">Item Name:</label>
+                    <input type="text" id="Name" name="Name" class="form-control form-control-sm" value="@Model.Name" required>
+                </div>
+                
+                <div class="form-group mb-3">
+                    <label for="Price">Price:</label>
+                    <input type="number" id="Price" name="Price" class="form-control form-control-sm" value="@Model.Price" required>
+                </div>
+                
+                <div class="form-group mb-3">
+                    <label for="AvailableStock">Available Stock:</label>
+                    <input type="number" id="AvailableStock" name="AvailableStock" class="form-control form-control-sm" value="@Model.AvailableStock" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-sm">Save Changes</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,145 @@
+﻿@using Microsoft.EntityFrameworkCore.Infrastructure
+@model List<SalesBoardSite.Models.ShoppingCartItem>
+
+@{
+    ViewData["Title"] = "View Cart";
+}
+
+<style>
+    /* General cyan theme and background */
+    body {
+        background-color: #e0f7fa; /* Light cyan background */
+        font-family: 'Arial', sans-serif;
+    }
+
+    /* Container styling */
+    .container {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+        margin: auto;
+    }
+
+    /* Headings styling */
+    h2 {
+        color: #004d40;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    /* Navigation buttons styling */
+    .btn-info {
+        background-color: #00bcd4;
+        color: white;
+        border: none;
+        margin: 5px;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .btn-info:hover {
+        background-color: #00838f;
+    }
+
+    /* Cart table styling */
+    .table {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #f1f8f8;
+    }
+
+    .table thead {
+        background-color: #00bcd4;
+        color: white;
+    }
+
+    .table thead th {
+        padding: 12px;
+    }
+
+    .table tbody td {
+        padding: 10px;
+    }
+
+    .btn-danger {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .btn-danger:hover {
+        background-color: #c62828;
+    }
+
+    .btn-primary {
+        background-color: #00bcd4;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .btn-primary:hover {
+        background-color: #00838f;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+</style>
+
+<div class="container">
+    <!-- Navigation Buttons -->
+    <div class="mb-4 text-center">
+        <a asp-action="ShoppingItems" asp-controller="User" class="btn btn-info btn-sm mx-2">Shopping Items</a>
+        <a asp-action="UserDetails" asp-controller="User" class="btn btn-info btn-sm mx-2">User Details</a>
+        <a asp-action="UserHome" asp-controller="User" class="btn btn-info btn-sm mx-2">Sell Items</a>
+        <a asp-action="Login" asp-controller="User" class="btn btn-info btn-sm mx-2">Logout</a>
+    </div>
+
+    <h2 class="text-center mb-4">View Cart</h2>
+
+    <!-- Cart Table -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                var qt = item.Quantity;
+                var ids = item.ItemId;
+                var cartid = item.ShoppingCartItemId;
+                var it = item.Items.Name;
+                <tr>
+                    <td>@it</td>
+                    <td>@qt</td>
+                    <td>
+                        <form asp-action="RemoveFromCart" asp-route-cartid="@cartid" asp-route-itemId="@ids" method="post" class="d-inline">
+                            <input type="hidden" name="itemId" value="@ids" />
+                            <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Buy Button -->
+    <div class="text-center mt-4">
+        <a asp-action="Purchases" asp-controller="User" class="btn btn-primary btn-sm">Buy</a>
+    </div>
+</div>

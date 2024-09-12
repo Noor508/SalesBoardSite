@@ -1,0 +1,113 @@
+﻿@model SalesBoardSite.Models.User
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<style>
+    /* General cyan theme and background */
+    body {
+        background-color: #e0f7fa; /* Light cyan background */
+        font-family: 'Arial', sans-serif;
+    }
+
+    /* Main container to center the login box */
+    .login-container {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #80deea, #00bcd4); /* Cyan gradient */
+    }
+
+    /* Form card styling */
+    .login-form {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+    }
+
+        /* Form field styling */
+        .login-form .form-control {
+            background-color: #e0f7fa;
+            border: none;
+            border-bottom: 2px solid #00acc1;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+            .login-form .form-control:focus {
+                border-color: #00838f;
+                box-shadow: none;
+            }
+
+        /* Submit and Register buttons */
+        .login-form button {
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+            .login-form button:hover {
+                background-color: #00838f;
+            }
+
+        .login-form a.btn-secondary {
+            background-color: #4dd0e1;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+            .login-form a.btn-secondary:hover {
+                background-color: #0097a7;
+            }
+
+    /* Typography adjustments */
+    h2 {
+        color: #004d40;
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: #00796b;
+        font-size: 18px;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+</style>
+
+<div class="login-container">
+    <div class="login-form">
+        <h2 class="text-center">Welcome to SalesBoardSite</h2>
+        <p>
+            Discover great deals and sell your items effortlessly. Join our community today and start trading with ease!
+        </p>
+
+        <form asp-action="Login" method="post">
+            <div class="form-group">
+                <label for="Username">Username</label>
+                <input type="text" id="Username" name="Username" class="form-control form-control-sm" required>
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="Pass">Password</label>
+                <input type="password" id="Pass" name="Pass" class="form-control form-control-sm" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Login</button>
+            <a asp-controller="User" asp-action="Register" class="btn btn-secondary">Register</a>
+        </form>
+    </div>
+</div>

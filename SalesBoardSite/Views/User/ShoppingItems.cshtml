@@ -1,0 +1,145 @@
+﻿@model List<SalesBoardSite.Models.Item>
+
+@{
+    ViewData["Title"] = "All Items";
+}
+
+<style>
+    /* General cyan theme and background */
+    body {
+        background-color: #e0f7fa; /* Light cyan background */
+        font-family: 'Arial', sans-serif;
+    }
+
+    /* Container styling */
+    .container {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    /* Headings styling */
+    h2 {
+        color: #004d40;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    /* Navigation buttons styling */
+    .btn-info {
+        background-color: #00bcd4;
+        color: white;
+        border: none;
+        margin: 5px;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+        .btn-info:hover {
+            background-color: #00838f;
+        }
+
+    /* Search form styling */
+    .input-group {
+        margin-bottom: 20px;
+    }
+
+        .input-group .form-control {
+            border-radius: 0;
+        }
+
+        .input-group .btn-outline-secondary {
+            border-color: #00bcd4;
+            color: #00bcd4;
+        }
+
+            .input-group .btn-outline-secondary:hover {
+                background-color: #00bcd4;
+                color: white;
+            }
+
+    /* Items table styling */
+    .table {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #f1f8f8;
+    }
+
+    .table thead {
+        background-color: #00bcd4;
+        color: white;
+    }
+
+        .table thead th {
+            padding: 12px;
+        }
+
+    .table tbody td {
+        padding: 10px;
+    }
+
+    .btn-secondary {
+        background-color: #4dd0e1;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 5px;
+    }
+
+        .btn-secondary:hover {
+            background-color: #0097a7;
+        }
+</style>
+
+<div class="container">
+    <!-- Navigation Buttons -->
+    <div class="mb-4 text-center">
+        <a asp-action="ViewCart" asp-controller="User" class="btn btn-info btn-sm mx-2">View Cart</a>
+        <a asp-action="UserDetails" asp-controller="User" class="btn btn-info btn-sm mx-2">User Details</a>
+        <a asp-action="UserHome" asp-controller="User" class="btn btn-info btn-sm mx-2">Sell Items</a>
+        <a asp-action="Login" asp-controller="User" class="btn btn-info btn-sm mx-2">Logout</a>
+    </div>
+
+    <h2 class="text-center mb-4">All Items</h2>
+
+    <!-- Search Form -->
+    <form asp-action="ShoppingItems" method="get" class="mb-4">
+        <div class="input-group">
+            <input type="text" class="form-control" name="searchTerm" placeholder="Search items">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Items Table -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Available Stock</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                    <td>@item.AvailableStock</td>
+                    <td>
+                        <a asp-action="ViewItem" asp-route-ItemId="@item.ItemId" class="btn btn-secondary btn-sm">View Item</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
